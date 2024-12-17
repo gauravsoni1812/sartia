@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Or another database provider like "mysql", "sqlite", etc.
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id          String     @id @default(uuid()) // Change id to String and use UUID
+  name        String
+  description String
+  status      String
+  createdBy   String
+  purchases   Purchase[]
+}
+
+model User {
+  id        String     @id @default(uuid()) // Change id to String and use UUID
+  email     String     @unique
+  name      String
+  password  String
+  role      String
+  purchases Purchase[]
+}
+
+model Purchase {
+  id        String     @id @default(uuid()) // Change id to String and use UUID
+  bookId    String     // BookId changed to String to match the UUID type
+  userId    String     // UserId changed to String to match the UUID type
+  date      DateTime   @default(now())
+  book      Book       @relation(fields: [bookId], references: [id])
+  user      User       @relation(fields: [userId], references: [id])
+}
