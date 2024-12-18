@@ -53,12 +53,12 @@ export default function SignIn() {
         Cookies.set("authToken", token, { expires: 1, secure: true }); // 1-day expiration, secure in production
 
         // Navigate to appropriate page based on role
-        if(data.role === "admin"){
-            navigate("/admin");
-        } else if(data.role === "superadmin"){
-            navigate("/superadmin");
+        if (data.role === "admin") {
+          navigate("/admin");
+        } else if (data.role === "superadmin") {
+          navigate("/superadmin");
         } else {
-            navigate("/user");
+          navigate("/user");
         }
       } else {
         setError(data.error || "Login failed");
@@ -154,6 +154,16 @@ export default function SignIn() {
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
+              {!isForgotPassword && (
+                <p className="mt-2 text-center text-sm/6 text-gray-500">
+                  <button
+                    onClick={() => setIsForgotPassword(true)}
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
+                    Forgot your password?
+                  </button>
+                </p>
+              )}
             </div>
 
             {/* Error Message */}
@@ -205,16 +215,18 @@ export default function SignIn() {
         )}
 
         {/* Forgot Password link */}
-        {!isForgotPassword && (
+         
           <p className="mt-2 text-center text-sm/6 text-gray-500">
             <button
-              onClick={() => setIsForgotPassword(true)}
+              onClick={() => {
+                navigate("/sign-up")
+              }}
               className="font-semibold text-indigo-600 hover:text-indigo-500"
             >
-              Forgot your password?
+             Not an Existing user signUp 
             </button>
           </p>
-        )}
+         
 
         {/* Back to Login link after resetting password */}
         {isForgotPassword && (

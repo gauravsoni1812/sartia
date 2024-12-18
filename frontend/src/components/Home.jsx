@@ -17,6 +17,7 @@ const Home = () => {
         setRole(decoded.role); // Assuming "role" is present in the token
       } catch (error) {
         console.error("Error decoding token:", error);
+        navigate("/sign-in")
       }
     }else{
         navigate("/sign-in")

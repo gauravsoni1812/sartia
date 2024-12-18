@@ -58,10 +58,10 @@ updateBook.patch("/", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
         // If status is "rejected" or "approved", notify the admin
         if (status.toLowerCase() === "rejected" || status.toLowerCase() === "approved") {
-            const adminEmail = "admin@example.com"; // Replace with your admin email
+            // Replace with your admin email
             const mailOptions = {
-                from: process.env.EMAIL_USER,
-                to: adminEmail,
+                from: process.env.EMAIL_USER_SUPER,
+                to: updatedBy,
                 subject: `Book Status Update: ${status}`,
                 text: `The book with ID: ${bookId} has been ${status} by ${updatedBy}.`,
                 html: `
