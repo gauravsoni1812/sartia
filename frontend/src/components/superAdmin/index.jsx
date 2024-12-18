@@ -20,23 +20,30 @@ const SuperAdmin = () => {
     const [books, setBooks] = useState([]);
 
     const [currentUser, setCurrentUser] = useState(null);
-
+ 
+    // Fetch books from the API when "Show Books" section is active
     useEffect(() => {
         const token = Cookies.get("authToken");
+      
         if (token) {
             try {
-                const decoded = jwtDecode(token); // Decode the JWT token
-                setCurrentUser(decoded.email); // Store the decoded user data (userId, email, etc.)
+                const decoded = jwtDecode(token);
+                console.log(decoded.userId)
+                if (!decoded.userId) {
+                    navigate("/sign-in")
+                }
+
+                if(decoded.role !== "superadmin"){
+                    navigate("/sign-in")
+                }
+                setCurrentUser(decoded.email)
             } catch (error) {
                 console.error("Error decoding token:", error);
             }
         } else {
             navigate("/sign-in")
-            console.log("No token found");
         }
-    }, []);
-    // Fetch books from the API when "Show Books" section is active
-    useEffect(() => {
+
         if (activeSection === "showBooks") {
             const fetchBooks = async () => {
                 try {
@@ -97,7 +104,7 @@ const SuperAdmin = () => {
             };
 
             // Send the update request to API
-            const response = await axios.patch(`http://localhost:3000/updateBook`, updatedBookData);  
+            const response = await axios.patch(`http://localhost:3000/updateBook`, updatedBookData);
 
             // Handle success
             console.log(response.data)
@@ -270,10 +277,10 @@ const SuperAdmin = () => {
                                             <strong>Status:</strong>{" "}
                                             <span
                                                 className={`${book.status === "approved"
-                                                        ? "text-green-600"
-                                                        : book.status === "rejected"
-                                                            ? "text-red-600"
-                                                            : "text-yellow-600"
+                                                    ? "text-green-600"
+                                                    : book.status === "rejected"
+                                                        ? "text-red-600"
+                                                        : "text-yellow-600"
                                                     }`}
                                             >
                                                 {book.status}

@@ -28,8 +28,8 @@ const transporter = nodemailer_1.default.createTransport({
 // Function to send an email to the superadmin
 const sendEmailToSuperAdmin = (bookName, userName, userEmail) => __awaiter(void 0, void 0, void 0, function* () {
     const mailOptions = {
-        from: process.env.EMAIL_USER_SUPER, // Sender's email
-        to: process.env.EMAIL_USER, // Superadmin's email
+        from: process.env.EMAIL_PASS_SUPER_USER, // Sender's email
+        to: process.env.EMAIL_USER_SUPER, // Superadmin's email
         subject: "Book Purchase Notification",
         html: `
       <h3>New Book Purchase</h3>

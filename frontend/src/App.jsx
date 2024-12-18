@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import SignIn from "./components/signIn";
-import SignupForm from "./components/signUp";
+import SignIn from "./components/auth/SignIn";
+import SignupForm from "./components/auth/SignUp";
 import CreateBook from "./components/createBook";
 import Admin from "./components/admin/admin";
 import SuperAdmin from "./components/superAdmin";
 import User from "./components/user";
+import ResetPassword from "./components/auth/ResetPassword";
 
 
 export default function App() {
@@ -19,7 +20,9 @@ export default function App() {
         <Route path="/user" element={<User />} />
         <Route path="/superadmin" element={<SuperAdmin />} />
         <Route path="/" element={<Home />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
 
+        
       </Routes>
     </BrowserRouter>
   );
