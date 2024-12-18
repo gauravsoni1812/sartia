@@ -3,10 +3,10 @@ import Home from "./components/Home";
 import SignIn from "./components/auth/SignIn";
 import SignupForm from "./components/auth/SignUp";
 import CreateBook from "./components/createBook";
-import Admin from "./components/admin/admin";
 import SuperAdmin from "./components/superAdmin";
 import User from "./components/user";
 import ResetPassword from "./components/auth/ResetPassword";
+import Admin from "./components/admin";
 
 
 export default function App() {

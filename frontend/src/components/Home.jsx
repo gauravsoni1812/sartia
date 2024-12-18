@@ -10,11 +10,12 @@ const Home = () => {
  
   useEffect(() => {
     const token = Cookies.get("authToken");
-    
+    console.log(token)
     if (token) {
       try {
         const decoded = jwtDecode(token);
         setRole(decoded.role); // Assuming "role" is present in the token
+        navigate(`/${decoded.role}`)
       } catch (error) {
         console.error("Error decoding token:", error);
         navigate("/sign-in")
@@ -32,7 +33,7 @@ const Home = () => {
   }
  
   return (
-    <>
+    <>adsfdbv
     </>
   );
 };
